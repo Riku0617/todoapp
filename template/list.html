@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{%block header%}
+    <h1 class="display-4">リストを表示します</h1>
+    <p class="lead">todoリストの作成ができます。</p>
+{%endblock header%}
+
+{%block content%}
+<div class="container">
+    <a class="btn btn-danger col-1" href="{% url 'create' %}" role="button">新規作成</a>
+{% for item in object_list %}
+<div class="alert alert-{{ item.priority }}" role="alert">
+    <p>{{item.title}} / {{ item.duedate }}</p>
+    <a class="btn btn-success col-1" href="{% url 'update' item.pk %}" role="button">編集</a>
+    <a class="btn btn-primary col-1" href="{% url 'delete' item.pk %}" role="button">削除</a>
+    <a class="btn btn-info col-1" href="{% url 'detail' item.pk %}" role="button">詳細</a>
+</div>
+{% endfor %}
+</div> 
+
+{%endblock content%}
